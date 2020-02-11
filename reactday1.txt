@@ -1,0 +1,915 @@
+
+// function declaration
+==> 1 way
+function sum1(x,y)
+{
+return x=y;
+}
+console.log(sum1(45,34));
+
+//function expression syntax
+==> 2 way
+const sum2=function(x,y)
+{
+return x+y;
+};
+console.log(sum2(45,34));
+
+
+
+//Arrow function -> function body has only one line i.e., return statement
+
+const sum3=(x,y)=>
+{
+return x+y; 
+};
+console.log(sum2(45,34));
+ 
+// single line return statement 
+const sum3=(x,y)=>x+y; 
+console.log(sum2(45,34));
+
+//single argument function
+const square=x=>x*x;
+console.log(square(12));
+
+
+// let x;  => x value is undefined
+function foo(x,y,z)
+{
+    console.log(x,y,z);
+
+}
+foo(12,13,14);
+foo(12,13,14,14);
+foo(12,13);
+
+
+// function references
+function sum(x,y)
+{
+return x+y;
+}
+const add=sum; // refer to same-
+console.log(add(12,13));
+
+
+// higher order function  => Higher order function is a function that accepts a function as argument or returns a function
+function f(h)
+{
+console.log("f is executing");
+h();  // it is equal to g()
+}
+function g()
+{
+console.log("g is executing");
+}
+f(g); ===> so h becomes equal to g(h=g)
+
+
+
+function f(h)
+{
+console.log("f is executing");
+h(); 
+// we can create one function in other function  
+function i()
+{
+console.log("i sis exectuing";
+
+}
+return i;
+}
+function g()
+{--
+console.log("g is executing");
+}
+const j=f(g); // h==g andj=i on returnig
+j();calls i()
+
+// we can creaT a function WHEN WE WANT TO PASS IT		 
+
+function f(h)
+{
+console.log("f is executing");
+h(); 
+// we can create one function in other function  
+// create a function just when you need to return it                                        
+return function ()
+{
+console.log("i sis exectuing");
+
+}
+return i;
+}
+//create a function just when you need to pass it as an argument
+// function g()
+// { console.log("g executing"); // all this is not required
+// }
+const j=f(function()
+{
+    console.log("g executing");
+}); // h==g andj=i on returnig
+j();//calls i()
+
+
+
+//FUNCTION CONTEXT  =>// this->function context - is available for ANY function (not only class methods)
+function foo()
+{
+console.log('foo this=',this);
+}
+foo(); // this->global object in node js // this->in browser it is window object
+// same function can be called with diff context - use foo.call() to call foo witha diff context
+foo.call({x:1}); //foo() is acled with ->{x:1}
+
+
+// foo.call
+function foo(x,y)
+{
+console.log('foo this=',this);
+}
+foo(12,13); 
+// same function can be called with diff context - use foo.call() to call foo witha diff context
+foo.call({x:1}12,13); //foo() is called with this->{x:1} and arg x=12, y=13
+
+
+//foo.bind() returns a new functiom with fixed context
+const boundFoo=foo.bind({x:1}):
+boundFoo(12,13); //foo.call({x:1},12,13);
+
+// we can fix arguments also
+const boundFoo2=foo.bind({x:1},12): // context and arguments are fixed
+boundFoo(13); //foo.call({x:1},12,13);
+
+
+
+
+//object method call context
+const john={
+    name:'John',
+    age:32,
+    celebrateBirthday:function()
+    {
+        this.age++;
+
+
+    }
+};
+
+//object method call context
+const john={
+    name:'John',
+    age:32,
+    celebrateBirthday:function()
+    {
+        this.age++; //refrs to John object
+     }
+};
+john.celebrateBirthday();   
+        //this->john object
+        const obj={
+            age:100
+        };
+        john.celebrateBirthday.call(obj);// this-> obj
+        console.log(john);
+        console.log(obj);
+        //cb and john.celebrateBirthday refres the same function
+        const cb=john.celebrateBirthday;
+        cb(); //this-> global in node and window in browser
+    console.log(cb);
+
+
+//problems of object method call context
+
+const john={
+    name:'John',
+    age:32,
+    celebrateBirthday:function()
+    {
+        console.log(this);
+        this.age++; //refrs to John object
+     }
+};
+function foo(fn)
+{
+    fn();
+}
+foo(john.celebrateBirthday);//fn=john.celebrateBirthday //window
+console.log(john);
+foo(john.celebrateBirthday.bind(john));
+
+
+
+ARRAY METHODS
+
+
+const numbers=[
+    1,3,5,7];
+// we want an array like this
+// {x:1}
+// {x:9}
+// {x:25}
+
+
+// An array has a function called map()
+1st ->const newArray=numbers.map((item)=>item*item);
+    console.log(newArray);
+2nd  ->const newArray=numbers.map((item)=>{ // by using return statement
+    return item*item});
+console.log(newArray);
+ 3rs->   const newArray=numbers.map((item)=>({x:item*item})); // to return single line by using object x
+console.log(newArray);
+  
+
+//filter
+    const filteredNumbers= numbers.filter(item=>item>=5);
+    console.log(filteredNumbers);
+
+
+NEW JAVASCRIPT
+
+
+VAR  => can be used outside
+LET => Block scoped
+
+if(true)
+{
+//let x=1; ///cannot be used outside the block
+var y=1; //can be used outside he block
+}
+//console.log('outside if,x=',x); //x is not defined 
+console.log('outside if,y=',y);
+
+function foo()
+{
+    if(true)
+    {
+    let x=1; ///cannot be used outside the block
+    var y=1; //can be used outside he block
+    }
+    console.log('outside if,x=',x); //x is not defined 
+    console.log('outside if,y=',y);
+      
+}
+
+CONST
+
+const x; // error const variavles must be initialsied
+const x=1;
+const x=2;// error cannnot assign otherv variable
+
+//property can be assigned with other value
+const john={
+    name:'John',
+    age:34
+
+}
+john.age++; // we can assign the value
+john.name='johanathm';
+console.log(john);
+
+==> for functions
+const sum=(x,y)=>x+y;
+sum=(x,y)=>x*y; //error
+
+const num=[1,3,5];
+num.push(8);//ok
+
+const num=[1,3,5];
+num=[1,4,5];//error
+
+//strings
+
+const message='Hello', name='John';
+const greeting=`${message} ${name}!`;
+console.log(greeting);
+
+output: Hello John!																																		
+ex:===
+const productId=3, reviewId=8;
+const url=`http://xyz.com/products/${productId}/reviews/${reviewId}`;
+console.log(url);
+
+
+//default arguments
+function greet(message,name)
+{
+    console.log(`${message}${name}!`);
+
+}
+greet('GOOd morning','john');
+greet('GOOd morning',);
+greet('GOOd morning');
+
+output:
+GOOd morningjohn!
+GOOd morningundefined!
+GOOd morningundefined!
+
+/array destructuring
+
+const days=[
+    'Mon',
+    'tues',
+    'wed',
+    'thrus',
+    'fri',
+
+];
+//const first=days[0],second=days[1] ---> insted of this below can be used
+const [first,second,,,fifth]=days;
+ console.log(first,second,fifth);
+
+output:
+Mon tues fri
+
+const [first,second,,fifth]=days;
+ console.log(first,second,fifth);
+output: 
+Mon tues,thrus
+
+
+//object destructuring
+const jihn={
+    name:'John',
+    age:23,
+    emalids:['john@gmail.com','john@yahoo.com'],
+    address:{
+        city:'hyd',
+        pincode:78990
+    }
+};
+//const name=john.name,yearsold=john.age;
+const {name,yearsOld}=jihn;
+console.log(name,yearsOld);
+
+outpuyt: 
+john undefined
+
+const {name,age:yearsOld}=jihn;
+console.log(name,yearsOld);
+
+output:
+John 23
+
+
+const {name,age :yearsOld,city}=jihn;
+console.log(name,yearsOld,city);
+ 
+output
+John 23 undefined
+
+
+const {name,age :yearsOld,address:{city}}=jihn;
+console.log(name,yearsOld,city);
+output
+John 23 hyd
+
+
+//fist emailid
+const {name,age :yearsOld,address:{city:town}, emailids:[ firstEmailId ]}=jihn;
+console.log(name,yearsOld,town,firstEmailId);
+
+
+John 23 hyd john@gmail.com
+
+
+//REST OPERATOR(...)
+
+function foo(x,y,z)
+{
+    console.log(x,y,z);
+}
+foo(1,2,3,45,6,6);
+
+function fooe(x,y, ...z)
+{
+    console.log(x,y,z);
+}
+fooe(1,2,3,45,6,6);
+
+
+output:
+1 2 3
+1 2 [ 3, 45, 6, 6 ]
+
+
+
+36 quest
+function sum(...num)
+{
+    let result=0;
+    for(let i=0;i<num.length;i++)
+    {
+        result=result+num[i];
+    }
+    return result;
+}
+    let result;
+    result = sum( 1, 2, 3, 4 );
+    console.log(result);
+
+
+
+
+//spread opertaor -... // takes args as an args seperated by commas
+//spread op -...// acn bve used with array and objects
+//math.max() accepts any number of args & returns the heighst arg
+console.log(Math.max(10,02,30,30,15));
+const num=[12,23,43,21];
+console.log(Math.max(...num)); 
+
+
+// used along with objects==> takes the kaey value pairs and puts commas b/w them
+const john={
+    name:'John',
+    age:23
+};
+john.age++;
+//creating a copy of john obj using spread op
+const johncopy={
+   ...john
+};
+john.age++;
+console.log(john);
+console.log(johncopy);
+
+output:
+{ name: 'John', age: 25 }
+{ name: 'John', age: 24 }
+
+
+const john={
+    name:'John',
+    age:23
+};
+
+//creating a copy of john obj using spread op
+const johncopy={
+   ...john
+};
+john.age++;
+console.log(john);
+console.log(johncopy);
+output:
+{ name: 'John', age: 23 }
+{ name: 'John', age: 24 }
+
+
+/ used along with objects==> takes the kaey value pairs and puts commas b/w them
+const john={
+    name:'John',
+    age:23,
+    address:{city:'bangle'}
+};
+john.age++;
+//creating a copy of john obj using spread op
+const johncopy={
+   ...john //name:'john' , age:23, address:john.address
+  
+};
+john.age++;
+john.address.city='hyd';
+console.log(john);// age has chnged and address
+console.log(johncopy);// age not changed
+
+output:
+
+{ name: 'John', age: 25, address: { city: 'hyd' } }
+{ name: 'John', age: 24, address: { city: 'hyd' }}
+=====
+====
+
+// used along with objects==> takes the kaey value pairs and puts commas b/w them
+const john={
+    name:'John',
+    age:23,
+    address:{city:'bangle'}
+};
+john.age++;
+//creating a copy of john obj using spread op
+const johncopy={
+   ...john //name:'john' , age:23, address:john.address
+   ,address:{...john.address}
+};
+john.age++;
+john.address.city='hyd';
+console.log(john);// age has chnged and address
+console.log(johncopy);// age not changed nad adres
+
+
+output:
+{ name: 'John', age: 25, address: { city: 'hyd' } }
+{ name: 'John', age: 24, address: { city: 'bangle' } }
+
+
+
+ex36:
+
+
+const payroll = {
+    employees: [
+        { name: 'John', dept: 'IT', salary: 1000 },
+        { name: 'Maria', dept: 'Finance', salary: 2000 },
+        { name: 'David', dept: 'Finance', salary: 3000 }
+    ],
+    hikePercentage: {
+        IT : 10,
+        Finance: 20
+    },
+    raise: function() {
+        // we change inner function(passed to forEach) to arrow function syntax
+        //now"this" within that function is also refers to payroll object
+        //arrow function 
+        this.employees.forEach( ( employee )=> {
+            const dept = employee.dept;
+
+            const salary = employee.salary;
+            const hikePercentage = this.hikePercentage[dept];
+            
+            employee.salary = ( ( 100 + hikePercentage ) / 100 ) * salary;
+        // this.employees.forEach(function ( employee ) {
+        //     const dept = employee.dept;
+
+        //     const salary = employee.salary;
+        //     const hikePercentage = this.hikePercentage[dept]; // error this refers to function employee so payroll.hikeperctange should be used
+        //     const hikePercentage = payroll.hikePercentage[dept];
+            
+        //     employee.salary = ( ( 100 + hikePercentage ) / 100 ) * salary;
+        });
+    }
+}
+
+payroll.raise();
+console.log( payroll.employees );
+
+
+
+
+CLASS in javascript
+
+
+//only class
+// class Person
+// {
+//     celebrateBirthday()
+//     {
+//         this.age++;
+//     }
+// }
+//with constructor
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        this.age++;
+    }
+}
+const john= new Person('John',32);
+const jane=new Person('Jane',23);
+console.log(john);
+console.log(jane);
+
+
+
+class==>using class
+class Movie{
+    constructor(name,cast,yearOfRelaese,boxOfficeCollection)
+    {
+        this.name=name;
+        this.cast=cast;
+        this.yearOfRelaese=yearOfRelaese;
+        this.boxOfficeCollection=boxOfficeCollection;
+    }
+
+
+addTocast(member)
+{
+    this.cast.push(member);
+}
+addToCollection(amount)
+{
+    this.boxOfficeCollection=this.boxOfficeCollection+amount;
+}
+}
+const war=new Movie('war',['hrithik'],2019,48900);
+const bahubali=new Movie('bahubali',['prabhas'],2020,89000);
+
+console.log(war);
+console.log(bahubali);
+war.addTocast('Tiger');
+console.log(war);
+
+
+without using class
+
+     const war= { name : 'War', 
+      cast: ['Hrithik'],
+       yearOfRelaese: '2020',
+        boxOfficeCollection: 899000 ,
+        
+          addTocast:function(newMember4)
+          {
+              //add new mem to cast array
+             this.cast.push(newMember4);
+          } ,
+          
+   addToCollection:function(newAmount)
+{
+this.boxOfficeCollection=this.boxOfficeCollection+newAmount;
+}
+        }
+
+
+war.addTocast('Tiger');
+war.addToCollection(29000);
+console.log(war);
+
+
+=====
+==//inherting
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        this.age++;
+    }
+}
+class Employee extends Person
+{
+    constructor(name,age)
+    {
+        super(name,age);
+    }
+
+}
+const john= new Employee('John',32);
+const jane=new Employee('Jane',23);
+console.log(john);
+console.log(jane);
+
+
+output:
+Employee { name: 'John', age: 32 }
+Employee { name: 'Jane', age: 23 }
+
+
+
+=================================== example2
+
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        this.age++;
+    }
+}
+
+class Employee extends Person
+{
+    constructor(name,age,role,dept)
+    {
+        super(name,age);
+        this.role=role;
+        this.dept=dept;
+    }
+
+}
+const john= new Employee('John',32,'HR','Finance');
+const jane=new Employee('Jane',23,'CR','IT');
+console.log(john);
+console.log(jane);
+
+
+
+
+===================
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        this.age++;
+    }
+}
+class Employee extends Person
+{
+    constructor(name,age,role,dept)
+    {
+        super(name,age);
+     
+        this.role=role;
+        this.dept=dept;
+    }
+    promote()
+    {
+        this.role=`senior${this.role}`;
+    }
+  
+}
+const john= new Employee('John',32,'HR','Finance');
+const jane=new Employee('Jane',23,'CR','IT');
+john.promote();
+
+console.log(john);
+console.log(jane);
+
+output:
+Employee { name: 'John', age: 32, role: 'seniorHR', dept: 'Finance' }
+Employee { name: 'Jane', age: 23, role: 'CR', dept: 'IT' }
+
+
+=========================
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        this.age++;
+    }
+}
+class Employee extends Person
+{
+    constructor(name,age,role,dept,salary)
+    {
+        super(name,age);
+        this.salary=salary;
+        this.role=role;
+        this.dept=dept;
+    }
+    promote()
+    {
+        this.role=`senior${this.role}`;
+    }
+hike(percentage)
+     {
+         this.salary=Math.round(this.salary*(1+percentage/100));
+         
+     }
+
+}
+const john= new Employee('John',32,'HR','Finance',90000);
+const jane=new Employee('Jane',23,'CR','IT',67000);
+john.promote();
+john.hike(15);
+
+console.log(john);
+console.log(jane);
+
+output:
+
+Employee {
+  name: 'John',
+  age: 32,
+  salary: 103500,
+  role: 'seniorHR',
+  dept: 'Finance' }
+Employee { name: 'Jane', age: 23, salary: 67000, role: 'CR', dept: 'IT' }
+=======================================
+class Person{
+constructor(name,age){
+    this.name=name;
+    this.age=age;
+
+}
+    celebrateBirthday()
+    {
+        console.log('celebrate birthday');
+        this.age++;
+    }
+}
+class Employee extends Person
+{
+    constructor(name,age,role,dept,salary)
+    {
+        super(name,age);
+        this.salary=salary;
+        this.role=role;
+        this.dept=dept;
+    }
+    promote()
+    {
+        this.role=`senior${this.role}`;
+    }
+hike(percentage)
+     {
+         this.salary=Math.round(this.salary*(1+percentage/100));
+         
+     }
+     celebrateBirthday()
+     {
+         console.log('happy birthday');
+         super.celebrateBirthday();
+    
+     }
+}
+const john= new Employee('John',32,'HR','Finance',90000);
+const jane=new Employee('Jane',23,'CR','IT',67000);
+john.promote();
+john.hike(15);
+john.celebrateBirthday();
+
+console.log(john);
+console.log(jane);
+
+
+output:
+
+
+happy birthday
+celebrate birthday
+Employee {
+  name: 'John',
+  age: 33,
+  salary: 103500,
+  role: 'seniorHR',
+  dept: 'Finance' }
+Employee { name: 'Jane', age: 23, salary: 67000, role: 'CR', dept: 'IT' }
+=============================================
+how to split javascript ======>like using import and export
+
+index.js   person.js index.html   employee.js
+
+==>index.js
+import {Employee} from './employee.js'
+const john= new Employee('John',32,'HR','Finance',90000);
+const jane=new Employee('Jane',23,'CR','IT',67000);
+john.promote();
+john.hike(15);
+
+console.log(john);
+console.log(jane);
+
+
+===>index.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="index.js" type="module"></script>
+    
+</body>
+</html>
+
+
+=====>person.js
+export class Person{
+    constructor(name,age){
+        this.name=name;
+        this.age=age;
+    
+    }
+        celebrateBirthday()
+        {
+            this.age++;
+        }
+    }
+===========>employee.js
+
+
+import {Person} from './person.js';
+export class Employee extends Person
+{
+    constructor(name,age,role,dept,salary)
+    {
+        super(name,age);
+        this.salary=salary;
+        this.role=role;
+        this.dept=dept;
+    }
+    promote()
+    {
+        this.role=`senior${this.role}`;
+    }
+hike(percentage)
+     {
+         this.salary=Math.round(this.salary*(1+percentage/100));
+         
+     }
+
+}
+
