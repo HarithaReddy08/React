@@ -1,0 +1,994 @@
+REACT BASICS 
+
+<!--React core library-->
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+    <!--React DOm                                                                                                                                                                                                                               -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+
+
+
+
+//JS funcytion to create DOm node'
+        //document.createElement('div);
+        //React.createElement() to create React element
+        const el=React.CreateElement(
+            'div',
+            {
+                id:'welcome-message'
+
+            },
+            'HElo world',
+            'Hello React',
+            React.CreateElement(
+                'div',
+                null,
+                'Helllo, aI am child')
+            
+        );
+        //when ReactDom.render()is called, it calls document.ccreateElement() to create the div Dom node, and then adds the div within <div id="root"></div>
+        ReactDOM.render(el,document.getElementById('root'));
+
+
+ex:1
+Questin:
+Design the component tree for a todo list application. This application maintains a list of things to do (task list), with indication if a task is completed or not. Each task has a checkbox against it to mark if it has been completed or not, and a button to delete the task from the list. On top of the task list is an input to accept the name of a new task to be added to the list. Below the input is a button that the user clicks after entering the task name in the input. Once the user clicks the button, the task is added to the task list.
+
+
+answr:::
+<!--SOLUTION 1-->
+<App>
+    <TaskInput/>
+    <TaskList items={[
+        {todo: 'Buy milk',completed:true},
+        {todo:'Learn react', completed:false},
+        ]}/>
+</App>
+
+<!--SOLUTION 2-->
+App>
+    <TaskInput/>
+    <TaskList >
+        <TaskListItem item={{todo: 'Buy milk',completed:true}}/>
+        <TaskListItem item={{todo:'Learn react', completed:false}}/>
+    </TaskList>
+</App>
+
+
+
+Exampl2:
+Create a div React element. It should have as children the following 3 elements a. A span with id 'counter' and the text '0' as child b. A button with text '+' c. A button with text '-'
+
+answr:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <!--React core library-->
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"></script>
+    <!--React DOm                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
+    </div>
+    
+    <script>
+         const el=React.createElement(
+             'div',
+             null,
+             React.createElement(
+                 'span',
+             {id:'counter',
+             title:'VAlue is 0',
+             },
+    
+             0,
+             ),
+            React.createElement('button',null,'+'),
+            
+            React.createElement('button',null,'-')
+            
+         );
+            ReactDOM.render(el,document.getElementById('root'));
+    </script>
+    
+</body>
+</html>
+
+
+use BABEL=====>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<script type="text/babel"></script>
+
+
+example2 using JSX :
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            const el=(
+<div>
+        <span id="counter">0</span>
+<button>+</button>
+<button>-</button>
+
+    </div>
+)
+            ReactDOM.render( el, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+
+
+===================
+To render multiple elements we have 3 ways
+
+--> ReactDOM.render(<div> {el1}{el2}</div>, document.getElementById( 'root' ) );
+----> ReactDOM.render( [el1,el2], document.getElementById( 'root' ) );
+---->ReactDOM.render(<React.Fragment> {el1}{el2}</React.Fragment>, document.getElementById( 'root' ) );
+
+
+
+===================
+exampl:4
+Render 2 div elements with the same structure as in the previous exercise. Try each of the following 3 ways to do it. a. Render the 2 divs as children of another div b. Add the 2 divs to an array and render the array of React elements c. Enclose the 2 divs in a React.Fragment and render
+
+answer:
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            const el1=
+            (<div title="Introduction to react">
+        An introduction to React
+        <br />
+        <span id="description">A UI library by Facebook and Instagram</span>
+    </div>),
+    const el2=
+    (<div title="Introduction to react">
+        An introduction to React
+        <br />
+        <span id="description">A UI library by Facebook and Instagram</span>
+    </div>);
+            ReactDOM.render(<div> {el1}{el2}</div>, document.getElementById( 'root' ) );
+            ReactDOM.render([el1,el2], document.getElementById( 'root' ) );
+            ReactDOM.render(<React.Fragment> {el1}{el2}</React.Fragment>, document.getElementById( 'root' ) );
+          
+
+        </script>
+    </body>
+</html>
+
+
+
+================
+REACT ELEMENTS
+
+
+react elements are immutable objects having props and children
+ <script type="text/babel">
+            const el = (
+//let chnge the value 
+                <div title="Introduction to react">
+                    An introduction to React
+                    <br />
+                    <span id="description">A UI library by Facebook and Instagram</span>
+                </div>
+            );
+
+            console.log( el ); // React element - a simpler abstraction of a DOM node
+
+            // you cannot modify a React element - it is immutable
+            // Step 1: Try modifying properties of el, including props and props.children, and log the element
+
+// we will get an Uncaught TypeError: Cannot assign to read only property 'title' of object '#<Object
+            el.props.title="Introduction ";
+            console.log(el);
+
+            ReactDOM.render( el, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+
+==============
+Virtual DOM
+====================
+components----> function
+           -----> class (more powerful)
+
+function-=========>
+function Clock()
+{
+    return(
+        <div>
+        Hello</div>
+    );
+
+}
+            // Step 2: Render a new clock instance every 1 second
+            ReactDOM.render(<Clock/>,document.getElementById('root'));
+          
+        </script>
+    </body>
+</html>
+
+
+===>
+function Clock(props)
+{
+    return(
+        <div>
+        {props.displaymessage}</div>
+    );
+
+}
+            // Step 2: Render a new clock instance every 1 second
+            // ReactDOM.render(<Clock/>,document.getElementById('root'));
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+            //props are collected into an object like so and passed to the component function)
+            //{
+                //displaymessage:"Localmtime is"
+            //}
+        </script>
+    </body>
+</html>
+
+===>
+function Clock(props)
+{
+    const time=(new Date()).toTimeString();
+    return(
+        <div>
+        {props.displaymessage}{time}</div>
+    );
+
+}
+            // Step 2: Render a new clock instance every 1 second
+            // ReactDOM.render(<Clock/>,document.getElementById('root'));
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+            //props are collected into an object like so and passed to the component function)
+            //{
+                //displaymessage:"Local time is"
+            //}
+        </script>
+    </body>
+</html>
+
+
+=============>to update time 
+function Clock(props)
+{
+    const time=(new Date()).toTimeString();
+    return(
+        <div>
+        {props.displaymessage}{time}</div>
+    );
+
+}
+            // Step 2: Render a new clock instance every 1 second
+      function update()
+      {
+      
+      
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+       
+      }
+      //calls update every 1 second
+      setInterval(update,1000);
+        </script>
+    </body>
+</html>
+
+function===>cannot maintain the data everytime
+        ==== we will get props through arguments
+class==>objects can maintain the data  // data to be associated then we use class component            
+      ===> must have render()
+======> we will get props through this.props
+class Clock extends React.Component{
+    //class component must have render() method which returns the react elemnt for the component
+    render()
+    {
+
+        const time=(new Date()).toTimeString();
+    return(
+        <div>
+        {this.props.displaymessage}{time}</div>
+    );
+
+}
+    
+    }
+      // Step 2: Render 2 instances of a clock (2  locks objects are created internally by REAct Dom in this process)
+            
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+        </script>
+    </body>
+</html>
+
+default constructor===> using state
+class Clock extends React.Component{
+    constructor(props){
+        //react component constructoe sets this.props=props;
+        super(props);
+        //state stores the data that changes over time
+        this.state={time:(new Date()).toTimeString()};
+    }
+    //class component must have render() method which returns the react elemnt for the component
+    render()
+    {
+return(
+        <div>
+        {this.props.displaymessage}{this.state.time}</div>
+    );
+
+}
+//to change the state time
+componentDidMount(){
+    setInterval(()=>
+    {
+        this.state.time=(new Date()).toTimeString();
+        this.forceUpdate(); // calls render() and updates page with newly returned elemnt
+
+    },1000);
+}
+    
+    }  
+     // Step 2: Render 2 instances of a clock (2  locks objects are created internally by REAct Dom in this process)
+            
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+        </script>
+    </body>
+</html>
+
+===========> state cannot be updated ourselves as it clumsy to use
+so ..
+we need to insert new object
+//wrong way 
+setInterval(()=>
+    {
+        this.state.time=(new Date()).toTimeString();
+        this.forceUpdate(); // calls render() and updates page with newly returned elemnt
+
+    },1000);
+
+//correct way
+setState is a request to update the change, it will call render function then it updates the change, it rerenders
+
+
+class Clock extends React.Component{
+    constructor(props){
+        //react component constructoe sets this.props=props;
+        super(props);
+        //state stores the data that changes over time
+        this.state={time:(new Date()).toTimeString()};
+    }
+    //class component must have render() method which returns the react elemnt for the component
+    render()
+    {
+return(
+        <div>
+        {this.props.displaymessage}{this.state.time}</div>
+    );
+
+}
+//to change the state time
+componentDidMount(){
+    setInterval(()=>
+    {
+        this.setState({time:(new Date()).toTimeString()});},1000);
+}
+    
+    }  
+     // Step 2: Render 2 instances of a clock (2  locks objects are created internally by REAct Dom in this process)
+            
+            ReactDOM.render([<Clock displaymessage="LOcal time is"/>,<Clock displaymessage="the time is"/>],document.getElementById('root'));
+        </script>
+    </body>
+</html> 
+
+
+==========>
+example:4
+Define a function component called TaskInput that shall take user input in your todo list app. The TaskInput component shows a text input, and a button. Enclose the 2 inside a form element and return the form element. Render an TaskInput element.
+
+
+answr:
+
+
+function TaskInput(props)
+{
+ return(
+    <form>
+       
+Describe the Task:<input type="text"></input><br/>
+<button>add Task</button>
+        </form>
+       
+    );
+    
+
+}
+
+ReactDOM.render(<TaskInput></TaskInput>,document.getElementById('root'));
+
+        </script>
+    </body>
+</html>
+
+
+
+=======
+ex4: with class
+
+
+
+
+        <script type="text/babel">
+        class TaskInput extends React.Component
+        {
+            render()
+            {
+                return(<form>
+       
+       Describe the Task:<input type="text"></input><br/>
+       <button>add Task</button>
+               </form>
+              );
+            }
+        }
+            
+            ReactDOM.render( <TaskInput/>, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+========================>
+ ReactDOM.render( <WeatherReport rainfall={rainfall} min={min} max={max} city={city} lastFiveDaysRainfall={lastFiveDaysRainfall}/>, document.getElementById( 'root' ) );
+instead of this following can be used
+
+const props={
+                rainfall,
+                min,max,city,
+                lastFiveDaysRainfall
+            }
+            ReactDOM.render(<WeatherReport (...)/>)
+
+
+=====================> example weather report using bootstrap
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 2: Define a WeatherReport (function-based) component. Use the received props to display details in a Bootstrap card (b4-card-default). Make sure to use className="" instead of class="" to aply CSS classes within JSX.
+
+function WeatherReport(props)
+{
+    const {
+                rainfall,
+                temperature:{min,max},city,
+                lastFiveDaysRainfall
+            }=props;
+            return(
+                <div class="container my-3">
+                <div class="card">
+                  <img class="card-img-top" src="holder.js/100px180/" alt=""/>
+                  <div class="card-body">
+                    <h4 class="card-title">Weateher at {city}</h4>
+                    <div class="card-text">Minimum tetmp {min}</div>
+                    <div class="card-text">MAx temp{max}</div>
+                    <div>rainfall is {rainfall}</div>
+                  </div>
+                  </div>
+              </div>
+            );
+}
+
+            const rainfall = 12.5, min = 50, max = 72, city = 'San Jose', z = true;
+            const lastFiveDaysRainfall = [ 3.2, 0, 10.5, 9.0, 11.2 ];
+
+            const date = new Date();
+
+            function inCelsius( tempInFarenheit ) {
+                return ( 5 / 9 ) * ( tempInFarenheit - 32 );
+            }
+
+            class TemperatureStats {
+                constructor( min, max ) {
+                    this.min = min;
+                    this.max = max;
+                }
+            }
+
+            // Step 1: Render a WeatherReport element and pass data of different types as props
+            // Step 3: Gather all the props to be passed in an object (say props), and pass it using props spread syntax ({ ...props } when creating the element)
+            // ReactDOM.render( /* your element goes in here */, document.getElementById( 'root' ) );
+            const props={
+                rainfall,
+                temperature: new TemperatureStats(min,max),city,
+                lastFiveDaysRainfall
+            }
+            ReactDOM.render(<WeatherReport{...props}/>,document.getElementById( 'root' ))
+            //ReactDOM.render( <WeatherReport rainfall={rainfall} min={min} max={max} city={city} lastFiveDaysRainfall={lastFiveDaysRainfall}/>, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+
+=============>
+weather report
+
+
+
+
+===>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 2: Define a WeatherReport (function-based) component. Use the received props to display details in a Bootstrap card (b4-card-default). Make sure to use className="" instead of class="" to aply CSS classes within JSX.
+
+function WeatherReport(props)
+{
+    const {
+                rainfall,
+                temperature:{min,max},city,
+                lastFiveDaysRainfall
+            }=props;
+            return(
+                <div className="container my-3">
+                <div className="card">
+                  <img className="card-img-top" src="holder.js/100px180/" alt=""/>
+                  <div className="card-body">
+                    <h4 className="card-title">Weateher at {city}</h4>
+{/*function directly can also be used*/}
+<div className="card-text">Minimum tetmp {Number(inCelsius(min)).toFixed(2)} Celsius</div>
+                  {/* <div className="card-text">Minimum tetmp {inCelsius(min)} Celsius</div>*/}
+                   <div className="card-text">Minimum tetmp {min}</div>
+                    <div className="card-text">MAx temp{max}</div>
+                    <div>rainfall is {rainfall}</div>
+                  </div>
+                  </div>
+              </div>
+            );
+}
+
+            const rainfall = 12.5, min = 50, max = 72, city = 'San Jose', z = true;
+            const lastFiveDaysRainfall = [ 3.2, 0, 10.5, 9.0, 11.2 ];
+
+            const date = new Date();
+
+            function inCelsius( tempInFarenheit ) {
+                return ( 5 / 9 ) * ( tempInFarenheit - 32 );
+            }
+
+            class TemperatureStats {
+                constructor( min, max ) {
+                    this.min = min;
+                    this.max = max;
+                }
+            }
+
+            // Step 1: Render a WeatherReport element and pass data of different types as props
+            // Step 3: Gather all the props to be passed in an object (say props), and pass it using props spread syntax ({ ...props } when creating the element)
+            // ReactDOM.render( /* your element goes in here */, document.getElementById( 'root' ) );
+            const props={
+                rainfall,
+                temperature: new TemperatureStats(min,max),city,
+                lastFiveDaysRainfall
+            }
+            ReactDOM.render(<WeatherReport{...props}/>,document.getElementById( 'root' ))
+            //ReactDOM.render( <WeatherReport rainfall={rainfall} min={min} max={max} city={city} lastFiveDaysRainfall={lastFiveDaysRainfall}/>, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+=============> rainfall as other compnent
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 2: Define a WeatherReport (function-based) component. Use the received props to display details in a Bootstrap card (b4-card-default). Make sure to use className="" instead of class="" to aply CSS classes within JSX.
+function RainfallReport(props)
+{
+    
+    return(
+        <React.Fragment>
+        <div>Rainfall from 
+        {rainfall}"</div>
+        <div>
+        Last 5 days rainfall (in mm) ={lastFiveDaysRainfall.join(',')}
+        </div>
+        </React.Fragment>
+    );
+}
+function WeatherReport(props)
+{
+    const {
+                rainfall,
+                temperature:{min,max},city,
+                lastFiveDaysRainfall
+            }=props;
+            return(
+                <div className="container my-3">
+                <div className="card">
+                  <img className="card-img-top" src="holder.js/100px180/" alt=""/>
+                  <div className="card-body">
+                    <h4 className="card-title">Weateher at {city}</h4>
+{/*function directly can also be used*/}
+<div className="card-text">Minimum tetmp {Number(inCelsius(min)).toFixed(2)} Celsius</div>
+                  {/* <div className="card-text">Minimum tetmp {inCelsius(min)} Celsius</div>*/}
+                   <div className="card-text">Minimum tetmp {min}</div>
+                    <div className="card-text">MAx temp{max}</div>
+                    <div>rainfall is {rainfall}</div>
+                    <RainfallReport rainfall={rainfall} lastFiveDaysRainfall={lastFiveDaysRainfall}/>
+                  </div>
+                  </div>
+              </div>
+            );
+}
+
+            const rainfall = 12.5, min = 50, max = 72, city = 'San Jose', z = true;
+            const lastFiveDaysRainfall = [ 3.2, 0, 10.5, 9.0, 11.2 ];
+
+            const date = new Date();
+
+            function inCelsius( tempInFarenheit ) {
+                return ( 5 / 9 ) * ( tempInFarenheit - 32 );
+            }
+
+            class TemperatureStats {
+                constructor( min, max ) {
+                    this.min = min;
+                    this.max = max;
+                }
+            }
+
+            // Step 1: Render a WeatherReport element and pass data of different types as props
+            // Step 3: Gather all the props to be passed in an object (say props), and pass it using props spread syntax ({ ...props } when creating the element)
+            // ReactDOM.render( /* your element goes in here */, document.getElementById( 'root' ) );
+            const props={
+                rainfall,
+                temperature: new TemperatureStats(min,max),city,
+                lastFiveDaysRainfall
+            }
+            ReactDOM.render(<WeatherReport{...props}/>,document.getElementById( 'root' ))
+            //ReactDOM.render( <WeatherReport rainfall={rainfall} min={min} max={max} city={city} lastFiveDaysRainfall={lastFiveDaysRainfall}/>, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+
+=============>exampl 7:
+Create a function component called BusinessCard. It takes as input props the following a. Full name b. Contacts details in an object with tel and emailid properties c. Image path (eg. if the image is in the current folder you may pass './name-of-image.jpg') d. A function that should be called when name in the business card is clicked. It can show an alert which says 'Hello, I am [[full name]]. Thanks for visiting my web site.'
+
+
+
+answer:'
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+<style>
+.business-card{padding: 20px; border:2px; border-radius: 5px;}
+.profile-pic{widows: 200px; float: left;}</style>
+        <script type="text/babel">
+function ContactDetails(props)
+{
+    return(
+        <React.Fragment>
+        <div>Tel:{tel}
+</div><div>EmailId:{emailId}</div></React.Fragment>    );
+}
+        function BusinessCard(props)
+        {
+            const {fullName,designation, company,contactDetails,imgurl}=props;
+            return(
+<div className="business-card">
+<img src={imgurl} className="profile-pic"/>
+
+
+    <h2>{fullName}<br/>
+    <small>{designation} at{company}</small>
+</h2>
+   <contactDetails contact={contactDetails}/>
+ 
+  </div>
+  
+
+
+            );
+        }
+            const props={fullName:'HarithaReddy',
+            designation:'sales Executive',
+            company:'ABC',
+            contantDetails:{
+                tel:909090909,
+                emailId:'harithareddy@gmail.com'
+            },
+            imgurl:"C://Users//Temp//Desktop//React//03-react//download.jpg"}
+            ReactDOM.render( <BusinessCard{...props}/>, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+==================tax invoice
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 1: Define a function component "Invoice" that displays details of an invoice
+            function Invoice( {customerName,items,coupon} ) {
+                
+                return (
+                    <div className="invoice">
+                        <div className="card border-primary">
+                            <div className="card-body">
+                                <h4 className="card-title">Invoice</h4>
+                                <hr />
+                                <p className="card-text">
+                                    Customer name: {customerName}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="invoice">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {
+                                    items.map(item=>(
+                                <tr>
+                                <td>{item.name}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.price}</td>
+                                <td>{item.quantity*item.price}</td>
+                                </tr>))}
+                                    {/* line items */}
+                                    {/* One line for grand total */}
+                                </tbody>
+                            </table>
+                     {coupon  ?      (<div> Use coupon {coupon} to get a discount on your next purchase</div>):null}
+                        </div>
+                        <footer>
+                            {/* render children here */}
+                        </footer>
+                    </div>
+                );
+            }
+            
+            const invoiceJohn = {
+                items: [
+                    {
+                        name: 'Mac n Cheese',
+                        quantity: 2,
+                        price: 5
+                    },
+                    {
+                        name: 'Coke Float',
+                        quantity: 4,
+                        price: 3.50
+                    }
+                ],
+                coupon: 'NEW30'
+            };
+            
+            const invoiceJane = {
+                items: [
+                    {
+                        name: 'French Fries',
+                        quantity: 1,
+                        price: 60
+                    },
+                    {
+                        name: 'Mc Swirl',
+                        quantity: 2,
+                        price: 2.25
+                    }
+                ]
+            };
+
+            // Step 2: Render 2 invoice elements (one for John and one for Jane). Make sure to use an array/container/React.Fragment. Pass billingDetails and customerName as props. Pass 2 div elements that contains store address, and store email id as children.
+            
+            ReactDOM.render(
+                <React.Fragment>
+                <Invoice{...invoiceJohn} customerName="John"/>
+                <Invoice{...invoiceJane} customerName="Jane"/>
+                </React.Fragment>,document.getElementById('root'));
+    
+        </script>
+    </body>
+</html>
+
+
+=====================>
+todo list
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+
+
+        function TaskInput(props)
+        {
+            return(<form>
+            Describe the task:<input type="text"/><br/>
+            <button>ADD TASK</button>
+            <button type="delete">DELETE</button>
+          
+            </form>);
+        }
+        function App({tasks})
+{
+return(
+    <div>
+    <h1>TODO APP</h1>
+    <TaskInput/><TaskList tasks={tasks}/>
+    </div>
+)
+}
+       class TaskList extends React.Component{
+           constructor(props){
+               super(props);
+           }
+       render()
+       {
+        
+            return(
+
+<div>
+<h3>tasks</h3>
+<ol>
+{
+    tasks.map(task=>(
+
+<li>
+    <input type="checkbox"/>{task.name}
+
+    <button>&times;</button>
+</li>))}
+{/* use map() to show li with checkbox , task name and del buttuon*/}
+</ol>
+
+
+
+
+</div>
+              
+            )
+        }
+       }
+       const tasks=[{name:'buy milk',completed:true},
+        {name: 'learn react', completed:false}]        ;
+
+            ReactDOM.render([<App tasks={tasks}/>], document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
