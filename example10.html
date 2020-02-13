@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+
+
+        function TaskInput(props)
+        {
+            return(<form>
+            Describe the task:<input type="text"/><br/>
+            <button>ADD TASK</button>
+            <button type="delete">DELETE</button>
+          
+            </form>);
+        }
+        function App({tasks})
+{
+return(
+    <div>
+    <h1>TODO APP</h1>
+    <TaskInput/><TaskList tasks={tasks}/>
+    </div>
+)
+}
+       class TaskList extends React.Component{
+           constructor(props){
+               super(props);
+           }
+       render()
+       {
+        const {tasks}=this.props
+        const completedStyle={
+            textDecoration:'line-through',
+            color:'olive'
+        };
+        const notCompletedStyle={
+            color:'crimson'
+        }
+            return(
+
+<div>
+<h3>tasks</h3>
+<ol>
+{
+    tasks.map(task=>(
+
+<li>
+    <input type="checkbox"/>{
+        task.completed?(
+      <span  style={completedStyle}>  {task.name}</span>):(<span  style={notCompletedStyle}>  {task.name}</span>)
+    }
+
+    <button>&times;</button>
+</li>))}
+{/* use map() to show li with checkbox , task name and del buttuon*/}
+</ol>
+
+
+
+
+</div>
+              
+            )
+        }
+       }
+       const tasks=[{name:'buy milk',completed:true},
+        {name: 'learn react', completed:false}]        ;
+
+            ReactDOM.render([<App tasks={tasks}/>], document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
