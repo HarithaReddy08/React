@@ -1,0 +1,30 @@
+floww=============>
+In extensions Visual studio (for styles)==>=>simple react snippets burke holland
+=====>charalampos karypidis reactjs code snippets
+public=======> index.html
+
+src ========>index.js &&&components===> Home.js
+                                   ====>catalog.js
+                                   ====>NavBar.js // for styling and using it App.js directly
+                                    ====>App.js
+
+
+to run services we need to install ==> npm i axios
+
+
+for awesome-store-server data we need to include
+ baseUrl='http://awesome-store-server.herokuapp.com/products' in catalogService.js
+
+
+
+in src===>components==========> services==>CatalogService.js
+also import import axios from 'axios';in CatalogService
+
+axios.*() returns a promise object (promise is built-in class in JS - it was introduced in ES2015)
+then() ==>// when backend succesfully returns the data
+AND catch() ==> //when backend was not able to return the data
+ARE 2 methods of promise object
+
+
+
+===>src===>components==>Catalog.js 

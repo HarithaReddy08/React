@@ -1,0 +1,55 @@
+Extension ==>download
+==>simple react snippets burke holland
+=====>charalampos karypidis reactjs code snippets
+
+
+=============>
+to use snippets
+{/*b4-navbar-minima;-ul*/}
+
+        b4-jumbotron-default
+==> for alert 
+b4-alert-dismissable 
+--->
+============================================
+to nsatll bootstrap '
+ npm i bootstrap react-router-dom
+
+     import 'bootstrap/dist/css/bootstrap.min.css' =====> in index.js
+=============================================
+
+shortcuts-===> rcc---  for class
+rsf==> for function
+cdm --> compiomnDIdMo
+
+===============
+npm i axios======> to fetch the data (servers) as HTTpclient in angular 
+also import import axios from 'axios';in CatalogService
+
+axios.*() returns a promise object (promise is built-in class in JS - it was introduced in ES2015)
+then() // when backend succesfully returns the data
+AND catch()  //when backend was not able to return the data
+ARE 2 methods of promise object
+
+ return  axios.get(`${this.baseUrl}/products`)
+        .then(function(response) // when backend succesfully returns the data
+        {
+return response.data; //data returned by backend(array of products)
+        })
+        .catch(function(){ //when backend was not able to return the data
+console.log(error.message);
+throw error;
+        })
+    }
+
+==============>awesome-store-server.herokuapp.com/products'
+==add extension to chrome
+
+==to view the code of awesome-store-server
+
+=----->json formatter
+--->react developer tools by fb
+--->reduct dev tools
+
+
+===============>

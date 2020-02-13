@@ -1,0 +1,483 @@
+INLINE STYLES
+IN HTML===> are not good they need to change every time
+        <style>
+            .invoice
+            {
+                padding: 20px;
+                border: 2px saddlebrown;
+                margin:20px;
+            }
+        </style>
+
+IN REACT====>
+
+
+bockground-color in html
+backgroundColor in react
+ function Invoice( {customerName,items,coupon,children} ) {
+                const thStyle={color:' crimson',
+                backgroundColor:'gold'}
+
+   <tr>
+                                        <th style={thStyle}>Item</th>
+                                        <th style={thStyle}>Qty</th>
+                                        <th style={thStyle}>Price</th>
+                                        <th style={thStyle}>Total</th>
+                                    </tr>
+
+
+
+more styls=============>
+
+strike through
+
+    const {tasks}=this.props
+        const completedStyle={
+            textDecoration:'line-through',
+            color:'olive'
+        };
+        const notCompletedStyle={
+            color:'crimson'
+        }
+
+<li>
+    <input type="checkbox"/>{
+//condition
+        task.completed?(
+      <span  style={completedStyle}>  {task.name}</span>):(<span  style={notCompletedStyle}>  {task.name}</span>)
+    }
+
+    <button>&times;</button>
+</li>))
+
+exampl 10::::
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+
+
+        function TaskInput(props)
+        {
+            return(<form>
+            Describe the task:<input type="text"/><br/>
+            <button>ADD TASK</button>
+            <button type="delete">DELETE</button>
+          
+            </form>);
+        }
+        function App({tasks})
+{
+return(
+    <div>
+    <h1>TODO APP</h1>
+    <TaskInput/><TaskList tasks={tasks}/>
+    </div>
+)
+}
+       class TaskList extends React.Component{
+           constructor(props){
+               super(props);
+           }
+       render()
+       {
+        const {tasks}=this.props
+        const completedStyle={
+            color:'olive'
+        };
+        const notCompletedStyle={
+            color:'crimpson'
+        }
+            return(
+
+<div>
+<h3>tasks</h3>
+<ol>
+{
+    tasks.map(task=>(
+
+<li>
+    <input type="checkbox"/>{
+        task.completed?(
+      <span  style={completedStyle}>  {task.name}</span>):(<span  style={notCompletedStyle}>  {task.name}</span>)
+    }
+
+    <button>&times;</button>
+</li>))}
+{/* use map() to show li with checkbox , task name and del buttuon*/}
+</ol>
+
+
+
+
+</div>
+              
+            )
+        }
+       }
+       const tasks=[{name:'buy milk',completed:true},
+        {name: 'learn react', completed:false}]        ;
+
+            ReactDOM.render([<App tasks={tasks}/>], document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+
+=================>within this braces {}
+we can put function call
+react array elements'
+react elemts[{el1,el1}]
+conditional op cond?(<span>cond true</span>):(<span> cond false)
+===================> styles
+    <button className='btn btn-sm btn-success'>+</button>
+                {' '}
+                    <button className='btn btn-sm btn-danger'>-</button>
+
+
+================2 ways for context 
+
+class compntcounter.html
+ // increament()
+            // {
+            //     this.setState({counter:this.state.counter+1});
+            // }
+
+<button className='btn btn-sm btn-success' onClick={this.increament.bind(this)}>+</button>
+
+ latest in js ARROW FUNCTION
+
+
+or
+ increament=()=>
+            {
+                this.setState({counter:this.state.counter+1});
+            }
+
+<button className='btn btn-sm btn-success' onClick={this.increament}>+</button>
+
+
+EARLIER CLASS PROPERTY SYNTAX
+      class Counter extends React.Component{
+            constructor(props)
+            {
+                super(props);
+                this.state={counter:0};
+            }
+LASTEST
+ class Counter extends React.Component{
+          
+           state= {
+               
+               counter:0
+            };
+
+
+
+============>clas component counter.html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+        //  class Counter extends React.Component{
+        //     constructor(props)
+        //     {
+        //         super(props);
+        //         this.state={counter:0};
+        //     }
+        //latest class property function
+        class Counter extends React.Component{
+          
+           state= {
+               
+               counter:0
+            };
+            increament=()=>
+            {
+                this.setState({counter:this.state.counter+1});
+            }
+            // increament()
+            // {
+            //     this.setState({counter:this.state.counter+1});
+            // }
+            decreament()
+            {
+                this.setState({counter:this.state.counter-1});
+            }
+            render()
+
+            {
+                const el=(
+                <div className="container my-4">
+                <span id="counter" title={`value is ${this.state.counter}`}>
+                {this.state.counter}</span>
+                {' '}
+                <button className='btn btn-sm btn-success' onClick={this.increament}>+</button>
+                // <button className='btn btn-sm btn-success' onClick={this.increament.bind(this)}>+</button>
+                {' '}
+                    <button className='btn btn-sm btn-danger' onClick={this.decreament.bind(this)}>-</button>
+                    </div>);
+                return el;
+            }
+        }
+            // Step 1: Write a class-based component called "Counter" that shows a counter value (starting 0), and 2 buttons - "+" and "-". Clicking "+" increments the counter, and clicking "-" decrements the counter. The markup to be rendered this is provided below.
+
+            // Step 2: Try using state which is setup using class property syntax
+            
+            // Step 3: Try using both bind() and class property syntax for event handler functions to fix its context to the Counter object. You may also use define the event handler to be an arrow function that calls the real event handler methods.
+            // const el = (
+            //     <div>
+            //         Counter: <span>{/* counter value */}</span>
+            //         <button>+</button>
+            //         <button>-</button>
+            //     </div>
+            // );
+
+
+            ReactDOM.render( <Counter />, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+============================>
+SETSTATE
+===> setState is asynchronous it takes time to change the state it wont change immediatly
+
+
+  increment = () => {
+                    // this.setState({ //this.state.counter=1
+                    //     counter: this.state.counter + 1
+                    // });
+                    // this.setState({ //here counter is in 0 stae it havn't changed yet so counter becomes 1 only
+                    //     counter: this.state.counter + 1
+                    // });
+
+
+or==>
+ // now counter chnges to 1 as we use function it sets the counter value
+                    this.setState(currState=>({
+                        counter: currState.counter + 1
+                    }));
+                       // now counter chnges to 2
+                    this.setState(currState=>({ 
+                        counter: currState.counter + 1
+                    }));
+                }
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 1: Run this to check it does not increment/decrement twice
+            // Step 2: Change to the function form of setState() and verify that it does change as intended now
+            // Step 3: Log the state to the console when the state actually changes
+            class Counter extends React.Component {
+                state = {
+                    counter: 0
+                };
+//set state is asynchronus function -the state may cahnge after sometime and non blocking
+                increment = () => {
+                    this.setState({ //this.state.counter+1
+                        counter: this.state.counter + 1
+                    });
+                    this.setState({ //here counter is in 0 stae it havn't changed yet so counter becomes 1 only
+                        counter: this.state.counter + 1
+                    });
+                }
+                
+                decrement = () => {
+                    this.setState({
+                        counter: this.state.counter - 1
+                    });
+                    this.setState({
+                        counter: this.state.counter - 1
+                    });
+                }
+
+                render() {
+                    const { counter } = this.state;
+                    const { increment, decrement } = this;
+
+                    return (
+                        <div className="container">
+                            Counter: <span>{counter}</span>
+                            {' '}
+                            <button onClick={increment} className="btn btn-primary">+</button>
+                            {' '}
+                            <button onClick={decrement} className="btn btn-danger">-</button>
+                        </div>
+                    );
+                }
+            }
+
+            ReactDOM.render( <Counter />, document.getElementById( 'root' ) );
+        </script>
+    </body>
+</html>
+
+===========================>
+methods
+setInterval(()=>console.log('hello'),1000)
+it returns as a number
+clearInterval(4)
+to clear 
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <style>
+            .panel {
+                border: 1px solid crimson;
+                border-radius: 5px;
+            }
+
+            .panel-heading, .panel-body {
+                padding: 10px;
+            }
+
+            .panel-heading {
+                background-color: crimson;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+        <script type="text/babel">
+            // Step 2: Separate the panel heading and panel body into their own components and still have the toggle functionality work.
+
+
+            // Step 1: Add functionality to toggle (open/close) the panel body when the panel heading is clicked
+            function PanelHeading(props)
+            {
+                const { children, heading } = this.props;
+                    const {isOpen}=this.state;
+                    return (
+                        <div className="panel">
+                            <div className="panel-heading" onClick={this.toggle}>{heading}</div>
+                            </div>)
+
+            }
+            function PanelBody(props)
+            {
+            
+         const { children, heading } = this.props;
+                    const {isOpen}=this.state;
+                    return(
+                        <div className="panel">
+                           
+                            {
+                                isOpen ? (
+                                <div className="panel-body">
+                                {children}
+                            </div>):null
+                            }
+                        </div>
+                    )
+
+            }
+            class Panel extends React.Component {
+                state={
+                    isOpen:true
+                };
+                toggle=()=>
+                {
+                    this.setState(curState=>({isOpen:!curState.isOpen}));
+                }
+                render() {
+                    const { children, heading } = this.props;
+                    const {isOpen}=this.state;
+
+                    return (
+                        <div className="panel">
+                            <div className="panel-heading" onClick={this.toggle}>{heading}</div>
+                             {
+                                isOpen ? (
+                                <div className="panel-body">
+                                {children}
+                            </div>):null
+                            }
+                            </div>
+                      
+                    )
+                }
+            }
+           
+
+            ReactDOM.render( 
+                <Panel heading="What is React?">
+                    It is a JS library for managing <strong>views</strong>
+                </Panel>,
+                document.getElementById( 'root' )
+            );
+        </script>
+    </body>
+</html>
