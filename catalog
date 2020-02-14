@@ -1,0 +1,97 @@
+//rcc
+import React, { Component } from 'react';
+import CatalogService from '../Services/Catalog';
+const CATALOG_FETCHING='CATALOG_FETCHING';
+const CATALOG_FETCHED='CATALOG_FETCHED';
+const CATALOG_FETCH_FAILED='CATALOG_FETCH_FAILED';
+
+class Catalog extends Component {
+    state={
+products:null,
+error:null
+    };
+    render() {
+        const {status,error,products}=this.state;
+    let el=null;
+    switch(status){
+        case CATALOG_FETCHING:
+        el=(<div class="alert alert-info alert-dismissible fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong>Hang on! Products are benn fetched</strong>
+        </div>);
+        break;
+        case CATALOG_FETCHED:
+            el=(
+                <div className="row">
+                    {
+
+products.map(product=>(
+
+             <div className="col-4 my-3">
+                <div class="card">
+                    <img class="card-img-top" src={product.imageUrl} alt=""/>
+                    <div class="card-body">
+                        <h4 class="card-title">{product.name}</h4>
+                        <p class="card-text">{product.price}</p>
+                    </div>
+                </div>
+                </div>
+            ))
+                    }
+                    </div>
+            );
+            break;
+            case CATALOG_FETCH_FAILED:
+                el=(<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong>Ooops ! we are unable to fetch the data
+                        <br/>
+                        {error.message}
+                    </strong>
+                </div>)
+                break;
+                default:
+                    el=null;
+                    break;
+
+    }
+        return (
+            <div>
+                <h1>CATALOG</h1>
+                <hr/>
+                {el}
+            </div>
+        );
+    }
+//cdm
+componentDidMount() {
+    this.setState(
+        {
+            status:CATALOG_FETCHING
+        }
+    );
+    CatalogService.getProducts()
+    .then((products)=>
+    {
+this.setState({products:products,
+status:CATALOG_FETCHED})
+    })
+    .catch((error)=>
+    {
+        this.setState({
+            error:error,
+            products:null,
+            status:CATALOG_FETCH_FAILED
+        })
+    })
+}
+
+}
+
+export default Catalog;
