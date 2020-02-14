@@ -1,0 +1,30 @@
+case REVIEWS_FETCED:
+            el=(
+                <div className="row">
+                    {
+
+review.map(review=>(
+
+             <div className="col-4 my-3" to={`/catalog/product.id/{reviews}`}>
+                <div class="card">
+                   
+                    <div class="card-body">
+               
+                        {/* <h4 class="card-title">{product.name}</h4>
+                        <p class="card-text">{product.price}</p> */}
+                        <p>{review.createdDate}</p>
+                     <p>reviewer:{review.reviewer}</p>
+                     <p>ProductId :{review.productId}</p>
+                   
+                     <p>Rating: {review.startRating}</p>
+                     <p>TITLE: {review.title}</p>
+                     <p>Text:{review.text}</p>
+                    </div>
+                </div>
+                </div>
+            ))
+                    }
+                    </div>
+            );
+            break;
+           
